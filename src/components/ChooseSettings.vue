@@ -8,6 +8,7 @@
 
     <div class="expansions">
       <h2 class="banger red">Choose Your Expansions</h2>
+      <div><div class="banger yellow panel expansion choice" @click="() => this.$store.dispatch('enableAllExpansions')">Activate All Expansions</div></div>
       <div v-for="exp in allExpansions" :key="exp.name" @click="() => { _toggleExpansion(exp.name) }" class="panel expansion choice" :class="{active: expansionNames.indexOf(exp.name) >= 0}">
         {{exp.name}}
       </div>

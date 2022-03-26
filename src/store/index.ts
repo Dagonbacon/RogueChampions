@@ -12,7 +12,7 @@ import {Game} from "@/types/game";
 import {generateGameOption} from "@/lib/game";
 import {GameOption} from "@/types/gameoption";
 import {DowntimeAction} from "@/types/downtime";
-import {DF_BASE, DF_STEP_LARGE, DF_STEP_SMALL} from "@/consts/difficulty";
+import {DF_BASE, DF_STEP_COLOSSAL, DF_STEP_LARGE, DF_STEP_SMALL} from "@/consts/difficulty";
 import {getHealAmount} from "@/lib/players";
 
 Vue.use(Vuex)
@@ -153,7 +153,14 @@ export const options : Store = {
     },
     enableAllExpansions ({state, commit} : ActionState) {
       ExpansionsList.forEach(x => {
-        commit('addExpansion', x.name)
+        if(x.name != CoreSet.name){
+          const found = state.expansions.find(e => e.name == x.name)
+          if (!found) {
+            commit('addExpansion', x.name)
+          } else {
+            commit('removeExpansion', x.name)
+          }
+        }
       })
     },
     startRun ({state, commit, dispatch} : ActionState, {numGames} : {numGames: number}) {
@@ -178,7 +185,7 @@ export const options : Store = {
 		// The options will have the villain you fight, any special challenges they
 		// have, as well as the upgrade categories you'll choose from
     generateGameOptions ({state, commit, dispatch}: ActionState) {
-      const targetDifficulty = DF_BASE + ((state.games.length + 1) * DF_STEP_LARGE)
+      const targetDifficulty = DF_BASE + ((state.games.length + 1) * DF_STEP_COLOSSAL)
       const options : GameOption[] = []
       const ids : string[] = []
 			const upgrades : UpgradeCategory[] = []
@@ -186,7 +193,7 @@ export const options : Store = {
         let attempts = 0
         let option : GameOption
         do {
-          option = generateGameOption(targetDifficulty - DF_STEP_LARGE, targetDifficulty + DF_STEP_LARGE, upgrades)
+          option = generateGameOption(targetDifficulty - DF_STEP_COLOSSAL, targetDifficulty + DF_STEP_COLOSSAL, upgrades)
 					option.game.rewardTypes.forEach((rt) => {
 						upgrades.push(rt)
 					})
