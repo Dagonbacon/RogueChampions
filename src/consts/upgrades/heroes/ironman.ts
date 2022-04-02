@@ -26,4 +26,10 @@ export const MarkVArmor = generateUpgradeCard({
 	category: 'Heroic'
 })
 
-export const Upgrades = [ArcReactor, PoweredGauntlets, RocketBoots, MarkVArmor, MarkVHelmet]
+export const Upgrades = [
+	ArcReactor,
+	PoweredGauntlets,
+	RocketBoots,
+	MarkVArmor,
+	MarkVHelmet
+]

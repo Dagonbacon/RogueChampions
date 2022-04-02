@@ -1,5 +1,5 @@
 import {generateExhaustedCardInPlay, generateUpgradeCard} from "@/lib/upgrades";
-import {ScarletWitch as Expansion} from "@/consts/expansions";
+import {DoctorStrange, ScarletWitch as Expansion} from "@/consts/expansions";
 import {ScarletWitch} from "@/consts/heroes";
 
 export const Helmet = generateUpgradeCard({
@@ -32,7 +32,6 @@ export const Agatha = generateExhaustedCardInPlay({
 	pronoun: 'her',
 })
 
-
 export const Quicksilver = generateExhaustedCardInPlay({
 	name: 'Twinstinct',
 	card: `Quicksilver`,
@@ -44,5 +43,13 @@ export const Quicksilver = generateExhaustedCardInPlay({
 	pronoun: 'him',
 })
 
+export const SorcererSupreme = generateUpgradeCard({
+	name: 'Queen of Chaos',
+	card: `The Sorcerer Supreme`,
+	requires: DoctorStrange.name,
+	requiresHero: ScarletWitch.name,
+	category: 'Heroic',
+	article: '',
+})
 
-export const Upgrades = [Helmet, Agatha, Quicksilver, MagicShield]
+export const Upgrades = [Helmet, Agatha, Quicksilver, MagicShield, SorcererSupreme]

@@ -50,7 +50,7 @@ export const generateGameOption  = (minDifficulty: number, maxDifficulty: number
 export const generateGame = (villain: Villain) : Game => {
 	// Each villain has their own list of sets that must be included
 	const sets = villain.sets.map((name) => {
-		const set = EncounterSetsList.find((e: any) => e.name == name)
+		const set = EncounterSetsList.find((e: any) => e.key == name)
 		if (!set) {
 			throw new Error('cant find villain\'s encounter set')
 		}

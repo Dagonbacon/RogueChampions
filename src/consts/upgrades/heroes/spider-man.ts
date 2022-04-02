@@ -1,53 +1,80 @@
 import {CoreSet} from "@/consts/expansions";
 import {IronMan, SpiderMan} from "@/consts/heroes";
-import {generateExhaustedCardInPlay, generateUpgradeCard} from "@/lib/upgrades";
+import {generateAllyCard, generateCounterCardInPlay, generateUpgradeCard,generateExhaustedCardInPlay} from "@/lib/upgrades";
+import { Upgrade, UpgradeCategory } from "@/types/upgrade";
 
-type SpidyUpgrade = {
-	article: string,
-	card: string
-	name: string
-	pronoun: string
-	they?: string
-}
-
-function upgrade (def: SpidyUpgrade) {
-	return generateExhaustedCardInPlay({
-		card: def.card,
-		name: def.name,
-		pronoun: def.pronoun,
-		requires: CoreSet.name,
-		requiresHero: SpiderMan.name,
-		category: 'Heroic',
-		article: def.article,
-		they: def.they
-	})
-}
-
-export const AuntMay = upgrade({
-	card: 'Aunt May',
-	name: 'Favorite Nephew',
+export const AuntMay = generateExhaustedCardInPlay({
+	name: 'Family',
+	card: `Aunt May`,
+	requires: CoreSet.name,
+	requiresHero: SpiderMan.name,
+	category: 'Heroic',
 	pronoun: 'her',
-	article: '',
 	they: 'She',
 })
 
-export const BlackCat = upgrade({
+
+export const WebShooter = generateUpgradeCard({
+	name: 'Go We Go!',
+	card: `WebShooter`,
+	requires: CoreSet.name,
+	requiresHero: SpiderMan.name,
+	category: 'Heroic',
+	copies: 2,
+	exhausted: true,
+})
+
+export const BlackCat = generateAllyCard({
+	name: 'Felicia',
 	card: 'Black Cat',
-	name: 'Cat Person',
 	pronoun: 'her',
-	article: '',
-	they: 'She',
+	requires: CoreSet.name,
+	requiresHero: SpiderMan.name,
+	levels: [{
+		damage: 1,
+		exhausted: true,
+	}, {
+		damage: 1,
+		exhausted: false,
+	}, {
+		damage: 0,
+		exhausted: false,
+	}],
+	category: 'Heroic',
 })
 
-export const WebShooter = upgrade({
-	card: 'Web Shooter',
-	name: 'Sticky Shooters',
-	pronoun: 'it',
-	article: 'a',
-})
+export const DailyBugle : Upgrade = {
+	name:'"I Want Pictures Of Spider-Man!"',
+	description () {
+		return 'Scientist is limited to twice per round instead of one.'
+	},
+	requires: null,
+	levelUpMessage () {
+		return ''
+	},
+	level: 1,
+	maxLevel: 1,
+	category: 'Heroic' as UpgradeCategory
+}
+
+export const IronSpider : Upgrade = {
+	name:'The Iron Spider',
+	description () {
+		return 'Start the game with a Tough status card.'
+	},
+	requires: null,
+	levelUpMessage () {
+		return ''
+	},
+	level: 1,
+	maxLevel: 1,
+	category: 'Heroic' as UpgradeCategory
+}
 
 export const Upgrades = [
 	AuntMay,
 	BlackCat,
 	WebShooter,
+	DailyBugle,
+	IronSpider
 ]

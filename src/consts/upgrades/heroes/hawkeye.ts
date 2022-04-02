@@ -73,9 +73,21 @@ export const Mockingbird = generateAllyCard({
 	category: 'Heroic',
 })
 
+export const Marksman = generateUpgradeCard({
+	name: 'Deadeye',
+	card: "Expert Marksman",
+	requires: RiseOfRedSkull.name,
+	requiresHero: Hawkeye.name,
+	category: "Heroic",
+	article: '',
+	copies: 2,
+	exhausted: true,
+})
+
 export const Upgrades : Upgrade[] = [
 	Quiver,
 	Bow,
 	Mockingbird,
-	Arrows
+	Arrows,
+	Marksman
 ]

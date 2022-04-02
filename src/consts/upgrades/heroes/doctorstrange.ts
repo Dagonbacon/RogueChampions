@@ -13,6 +13,16 @@ export const Sanctum = generateExhaustedCardInPlay({
 	pronoun: 'it',
 })
 
+export const Eye = generateExhaustedCardInPlay({
+	name: 'To Contain Time',
+	card: `Eye of Agamotto`,
+	requires: Exp.name,
+	requiresHero: DoctorStrange.name,
+	category: 'Heroic',
+	article: '',
+	pronoun: 'it',
+})
+
 export const Cloak = generateExhaustedCardInPlay({
 	name: 'Attuned Magical Item',
 	card: `Cloak of Levitation`,
@@ -75,5 +85,6 @@ export const Upgrades = [
 	Spellmaster,
 	Sanctum,
 	Cloak,
-	Wong
+	Wong,
+	Eye
 ]
